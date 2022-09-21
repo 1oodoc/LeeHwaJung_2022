@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style_sub4.css" rel="stylesheet">
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        mobile_menu();
+    });
+    
+    function mobile_menu(){
+        /* 변수 선언 */
+        var $menu = null;
+        var $left_gnb = null; // 영역 전체
+        var $depth1_wrap = null;
+        var $depth1 = null;
+        var $depth1_btn = null;
+        
+        /* 시작 함수 */
+        function start(){
+            init();
+            init_event();
+        }
+        /* 변수 초기화 함수 */
+        function init(){
+            $menu = $('.menu');
+            $left_gnb = $('.left_gnbWrap'); // 영역 전체
+            $depth1_wrap = $('.left_gnb>li');
+            $depth1 = $depth1_wrap.children('ul');
+            $depth1_btn = $depth1_wrap.children('a');
+        }
+        /* 이벤트 함수 */
+        function init_event(){
+            
+            /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+            $menu.click(function(event){
+                event.preventDefault();
+                $left_gnb.addClass('on');
+            });
+            
+            /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+            $('.close').click(function(event){
+                event.preventDefault();
+    
+                $left_gnb.removeClass('on');
+                
+                // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                setTimeout(function(){
+                    $depth1_btn.removeClass('on');
+                    $depth1.slideUp();
+                },300)
+            });
+            
+            /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+            $depth1_btn.click(function(event){
+                event.preventDefault();
+                var $this = $(this);
+                var $this_ul = $this.siblings('ul');
+    
+                var check = $this.hasClass('on');
+                if(check){
+                    $this.removeClass('on');
+                    $this_ul.stop(true,true).slideUp();
+                }else{
+                    $depth1_btn.removeClass('on');
+                    $depth1.stop().slideUp();
+                    $this.addClass('on');
+                    $this_ul.stop(true,true).slideDown();
+                }
+            });
+            
+            /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+            $(window).resize(function(){
+                $left_gnb.removeClass('on');
+            });
+        }
+        
+        start(); // 시작 호출
+    }
+    </script>
+    <style type="text/css">
+    /* Common **********************************************************************/ 
+    html,body {width:100%;  }
+    html {/*overflow-y:scroll;*/ overflow-x:hidden; box-sizing:border-box;}
+    *, *:before, *:after{box-sizing:inherit;}
+    *{
+    -webkit-text-size-adjust:none;
+    -webkit-text-size-adjust - auto | none | N% (default auto)
+    }
+    body {word-wrap:break-word; word-break:keep-all; }
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0; padding:0;}
+    fieldset,img {border:0px none;  vertical-align:top; -ms-interpolation-mode: bicubic;}
+    dl,ul,ol,menu,li {list-style:none;}
+    blockquote, q {quotes: none;}
+    blockquote:before, blockquote:after,q:before, q:after {content:''; content:none;}
+    button {border:0 none; background-color:transparent; cursor:pointer;}
+    body { background:#fff; font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;}
+    body,th,td,input,select,textarea,button {font-size:13px; line-height:1.2;} 
+    
+    table {border-collapse:collapse; border-spacing:0;}
+    address,caption,cite,code,dfn,em,var {font-style:normal; font-weight:normal;}
+    summary, caption, legend{width:0; height:0; font-size: ; line-height: ; overflow: hidden; visibility: hidden; border: none; position:absolute; left:-1000em;}
+    caption {position:static;}
+    /* label hidden 처리 */
+    .invisible{overflow:hidden; visibility:hidden; width:0; height:0; font-size:0; line-height:0; position:absolute;}
+    label.invisible{*position:absolute;}
+    ::-moz-selection { color:#fff; background:#84bac4; }
+    ::selection { color:#fff; background:#84bac4; }
+    
+    .hide{display: none; opacity: 0; width: 0; height: 0; text-indent: -9999px;}
+    .clear:after{display: block; content: ""; clear: both;}
+    .fl{float: left;}
+    .fr{float: right;}
+    
+    
+    * html .clfix {height:1%;} /* Hides from IE-mac */
+    
+    
+    
+    /*-------------------모바일 메뉴----------------------*/
+    .gnbWrap{
+        padding-top: 10px; padding-bottom: 8px;
+        width: 890px; margin: 0 auto;
+    }
+    .gnbWrap>img{
+        width: 250px; height: 42px;
+    }
+    /* 모바일 메뉴 버튼 */
+    .menu {float: right}
+    .menu>a{width: 100%;height: 100%; display: block;}
+    
+    a.close{
+         width: 50px; height: 50px;
+        position: absolute; right: 0; top: 0; color: #fff;
+        line-height: 50px; text-align: center;
+    }
+    .left_gnbWrap{
+        height: 100%;
+        width: 300px;
+        position: fixed; right: -300px; top: 0;
+        background-color: rgba(132, 186, 196, 0.8);
+        padding-top: 50px;
+        z-index: 999;
+        transition: all 0.3s;
+    }
+    .left_gnbWrap.on{
+        right:0;font-family: 'notosans_light';
+    }
+    .left_gnb>li{
+        width: 100%;
+    }
+    .left_gnb>li>a{
+        display: block; text-align: center; line-height: 50px;
+        width: 100%; height: 50px;
+        color: #fff;
+        font-size: larger;
+    }
+    .left_gnb>li>a.on{
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50px;
+        width: 60%; margin: 0 auto;
+        color: #276772;;
+    }
+    .left_gnb>li>ul{
+        display: none;
+    }
+    .left_gnb>li>ul>li>a{
+        display: block; text-align: center; line-height: 50px;
+        width: 100%; height: 50px; 
+        color: #fff;
+        width: 80%;
+        margin: 0 auto;
+    
+    }
+    </style>
+    
+    
+    
+    
+    
+    <title>청년다방 고객센터</title>
+</head>
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="inner">
+                <div class="logo"><a href="index.html"><img src="img/logo.png"></a></div>
+                <ul class="menu_c">
+                    <li><a href="index_sub1.html">브랜드</a></li>
+                    <li><a href="index_sub2.html">창업</a></li>
+                    <li><a href="index_sub3.html">새소식</a></li>
+                    <li><a href="index_sub4.html">고객센터</a></li>
+                    <!-- 초기화 -->
+                </ul>
+
+                <div class="menu">
+                    <a href="#"><img src="img/menu.png"></a>
+                  </div>
+                  
+                <nav class="left_gnbWrap">
+                    <a href="#" class="close">close</a>
+                    <ul class="left_gnb">
+                        <li>
+                            <a href="index_sub1.html">브랜드</a>
+                            <ul>
+                                <li><a href="index_sub1.html">청년다방</a></li>
+                                <li><a href="index_sub1.html">지표가 되다</a></li>
+                                <li><a href="index_sub1.html">한류 열풍에 동참하다</a></li>
+                                <li><a href="index_sub1.html">인테리어 갤러리</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub2.html">창업</a>
+                            <ul>
+                                <li><a href="index_sub2.html">청공 창업 스토리</a></li>
+                                <li><a href="index_sub2.html">성공 경쟁력</a></li>
+                                <li><a href="index_sub2.html">청년 상생을 만나다</a></li>
+                                <li><a href="index_sub2.html">창업은 어떻게</a></li>
+                                <li><a href="index_sub2.html">가맹 FAQ</a></li>
+                                <li><a href="index_sub2.html">창업 설명회 신청</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub3.html">새소식</a>
+                            <ul>
+                                <li><a href="index_sub3.html">청년 웹진</a></li>
+                                <li><a href="index_sub3.html">청년은 즐겁다</a></li>
+                                <li><a href="index_sub3.html">보도자료</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub4.html">고객센터</a>
+                            <ul>
+                                <li><a href="index_sub4.html">문의하기</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+
+
+                <!-- 초기화 -->
+            </div>
+        </div>
+        <div id="mainimg">
+            <div class="mainimg kenburns-top"></div>
+            <div class="mainimg_box fade-in">
+                <div class="mainimg_text">
+                    <h1 class="text-focus-in">고객센터
+                    </h1>
+                    <p class="text-focus-in2">언제나 여러분의 목소리에<br>
+                        귀 기울이겠습니다.</p>
+                </div>
+                <div class="mainimg_line"></div>
+            </div>
+        </div>
+        <div id="contents">
+            <div class="inner">
+                <div class="box">
+                    <div class="box_l">
+                        <div class="box_l_wrap">
+                            <div class="list">
+                                <h3>1996</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 12</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1995</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 12</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1994</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 12</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1993</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 11</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1992</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 11</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1991</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 10</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1990</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 10</p>
+                                <p>답변완료</p>
+                            </div>
+                            <div class="list">
+                                <h3>1989</h3>
+                                <p>비밀글입니다.</p>
+                                <p>김--</p>
+                                <p>2022. 07. 10</p>
+                                <p>답변완료</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="box_r">
+                        <div class="box_r_bg">
+                            <div class="box_r_hover">
+                                <p>불편한 점 혹은<br>
+                                    문의사항이 있으신가요?</p>
+                                    <div class="btn">
+                                        <p>글쓰기 ></p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 초기화 -->
+                    <ul class="number">
+                        <li><</li>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <p>개인정보취급방침 이메일 무단수집거부 청년연구소<br>
+                    ㈜한경기획 621-81-86842 서울특별시 마포구 대흥로60 스카이빌딩 3층 T. 1666-4693 F. 02)3144-7866 Copyright © 청년다방. All
+                    Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

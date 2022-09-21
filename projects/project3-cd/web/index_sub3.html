@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style_sub3.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        mobile_menu();
+    });
+    
+    function mobile_menu(){
+        /* 변수 선언 */
+        var $menu = null;
+        var $left_gnb = null; // 영역 전체
+        var $depth1_wrap = null;
+        var $depth1 = null;
+        var $depth1_btn = null;
+        
+        /* 시작 함수 */
+        function start(){
+            init();
+            init_event();
+        }
+        /* 변수 초기화 함수 */
+        function init(){
+            $menu = $('.menu');
+            $left_gnb = $('.left_gnbWrap'); // 영역 전체
+            $depth1_wrap = $('.left_gnb>li');
+            $depth1 = $depth1_wrap.children('ul');
+            $depth1_btn = $depth1_wrap.children('a');
+        }
+        /* 이벤트 함수 */
+        function init_event(){
+            
+            /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+            $menu.click(function(event){
+                event.preventDefault();
+                $left_gnb.addClass('on');
+            });
+            
+            /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+            $('.close').click(function(event){
+                event.preventDefault();
+    
+                $left_gnb.removeClass('on');
+                
+                // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                setTimeout(function(){
+                    $depth1_btn.removeClass('on');
+                    $depth1.slideUp();
+                },300)
+            });
+            
+            /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+            $depth1_btn.click(function(event){
+                event.preventDefault();
+                var $this = $(this);
+                var $this_ul = $this.siblings('ul');
+    
+                var check = $this.hasClass('on');
+                if(check){
+                    $this.removeClass('on');
+                    $this_ul.stop(true,true).slideUp();
+                }else{
+                    $depth1_btn.removeClass('on');
+                    $depth1.stop().slideUp();
+                    $this.addClass('on');
+                    $this_ul.stop(true,true).slideDown();
+                }
+            });
+            
+            /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+            $(window).resize(function(){
+                $left_gnb.removeClass('on');
+            });
+        }
+        
+        start(); // 시작 호출
+    }
+    </script>
+    <style type="text/css">
+    /* Common **********************************************************************/ 
+    html,body {width:100%;  }
+    html {/*overflow-y:scroll;*/ overflow-x:hidden; box-sizing:border-box;}
+    *, *:before, *:after{box-sizing:inherit;}
+    *{
+    -webkit-text-size-adjust:none;
+    -webkit-text-size-adjust - auto | none | N% (default auto)
+    }
+    body {word-wrap:break-word; word-break:keep-all; }
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0; padding:0;}
+    fieldset,img {border:0px none;  vertical-align:top; -ms-interpolation-mode: bicubic;}
+    dl,ul,ol,menu,li {list-style:none;}
+    blockquote, q {quotes: none;}
+    blockquote:before, blockquote:after,q:before, q:after {content:''; content:none;}
+    button {border:0 none; background-color:transparent; cursor:pointer;}
+    body { background:#fff; font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;}
+    body,th,td,input,select,textarea,button {font-size:13px; line-height:1.2;} 
+    
+    table {border-collapse:collapse; border-spacing:0;}
+    address,caption,cite,code,dfn,em,var {font-style:normal; font-weight:normal;}
+    summary, caption, legend{width:0; height:0; font-size: ; line-height: ; overflow: hidden; visibility: hidden; border: none; position:absolute; left:-1000em;}
+    caption {position:static;}
+    /* label hidden 처리 */
+    .invisible{overflow:hidden; visibility:hidden; width:0; height:0; font-size:0; line-height:0; position:absolute;}
+    label.invisible{*position:absolute;}
+    ::-moz-selection { color:#fff; background:#84bac4; }
+    ::selection { color:#fff; background:#84bac4; }
+    
+    .hide{display: none; opacity: 0; width: 0; height: 0; text-indent: -9999px;}
+    .clear:after{display: block; content: ""; clear: both;}
+    .fl{float: left;}
+    .fr{float: right;}
+    
+    
+    * html .clfix {height:1%;} /* Hides from IE-mac */
+    
+    
+    
+    /*-------------------모바일 메뉴----------------------*/
+    .gnbWrap{
+        padding-top: 10px; padding-bottom: 8px;
+        width: 890px; margin: 0 auto;
+    }
+    .gnbWrap>img{
+        width: 250px; height: 42px;
+    }
+    /* 모바일 메뉴 버튼 */
+    .menu {float: right}
+    .menu>a{width: 100%;height: 100%; display: block;}
+    
+    a.close{
+         width: 50px; height: 50px;
+        position: absolute; right: 0; top: 0; color: #84bac4;
+        line-height: 50px; text-align: center;
+    }
+    .left_gnbWrap{
+        height: 100%;
+        width: 300px;
+        position: fixed; right: -300px; top: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding-top: 50px;
+        z-index: 999;
+        transition: all 0.3s;
+    }
+    .left_gnbWrap.on{
+        right:0;
+        font-family: 'notosans_light';
+    }
+    .left_gnb>li{
+        width: 100%;
+    }
+    .left_gnb>li>a{
+        display: block; text-align: center; line-height: 50px;
+        width: 100%; height: 50px;
+        color: #6ca6ad;
+        font-size: larger;
+    }
+    .left_gnb>li>a.on{
+        background-color: rgba(131, 186, 193, 1);
+        border-radius: 50px;
+        width: 60%; margin: 0 auto;
+        color: #fff;;
+    }
+    .left_gnb>li>ul{
+        display: none;
+    }
+    .left_gnb>li>ul>li>a{
+        display: block; text-align: center; line-height: 50px;
+        width: 100%; height: 50px; 
+        color: rgba(0, 0, 0, 0.8);
+        width: 80%;
+        margin: 0 auto;
+    
+    }
+    </style>
+    
+    
+    
+    
+    
+    <title>청년다방 새소식</title>
+
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="inner">
+                <div class="logo"><a href="index.html"><img src="img/logo.png"></a></div>
+                <ul class="menu_c">
+                    <li><a href="index_sub1.html">브랜드</a></li>
+                    <li><a href="index_sub2.html">창업</a></li>
+                    <li><a href="index_sub3.html">새소식</a></li>
+                    <li><a href="index_sub4.html">고객센터</a></li>
+                    <!-- 초기화 -->
+                </ul>
+
+                <div class="menu">
+                    <a href="#"><img src="img/menu.png"></a>
+                  </div>
+                  
+                <nav class="left_gnbWrap">
+                    <a href="#" class="close">close</a>
+                    <ul class="left_gnb">
+                        <li>
+                            <a href="index_sub1.html">브랜드</a>
+                            <ul>
+                                <li><a href="index_sub1.html">청년다방</a></li>
+                                <li><a href="index_sub1.html">지표가 되다</a></li>
+                                <li><a href="index_sub1.html">한류 열풍에 동참하다</a></li>
+                                <li><a href="index_sub1.html">인테리어 갤러리</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub2.html">창업</a>
+                            <ul>
+                                <li><a href="index_sub2.html">청공 창업 스토리</a></li>
+                                <li><a href="index_sub2.html">성공 경쟁력</a></li>
+                                <li><a href="index_sub2.html">청년 상생을 만나다</a></li>
+                                <li><a href="index_sub2.html">창업은 어떻게</a></li>
+                                <li><a href="index_sub2.html">가맹 FAQ</a></li>
+                                <li><a href="index_sub2.html">창업 설명회 신청</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub3.html">새소식</a>
+                            <ul>
+                                <li><a href="index_sub3.html">청년 웹진</a></li>
+                                <li><a href="index_sub3.html">청년은 즐겁다</a></li>
+                                <li><a href="index_sub3.html">보도자료</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub4.html">고객센터</a>
+                            <ul>
+                                <li><a href="index_sub4.html">문의하기</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+
+
+                <!-- 초기화 -->
+            </div>
+        </div>
+        <div id="mainimg">
+            <div class="mainimg kenburns-top"></div>
+            <div class="mainimg_box fade-in">
+                <div class="mainimg_text">
+                    <h1 class="text-focus-in">청년
+                        <br><span>늬우스</span>
+                    </h1>
+                    <p class="text-focus-in2">청년다방의 소식을<br>
+                        한눈에 볼 수 있습니다.</p>
+                </div>
+                <div class="mainimg_line"></div>
+            </div>
+        </div>
+        <div id="contents">
+            <div class="box1">
+                <div class="box1_btn">
+                <div class="box1_top">
+                    <div class="box1_top_left">
+                        <img src="img/left.png">
+                    </div>
+                    
+                    <div class="inner">
+                        <div class="box1_bg">
+                            <div class="box1_bg_hover">
+                                    <div class="box1_text_l">
+                                        <h1>청년다방 소식지</h1>
+                                        <h4>27호</h4>
+                                    </div>
+                                    <div class="box1_text_line"></div>
+                                    <div class="box1_text_line_m"></div>
+                                    <div class="box1_text_r">
+                                        <h1>안녕, 봄</h1>
+                                        <h4>22.03</h4>
+                                    </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                  
+                    <div class="box1_top_right">
+                        <img src="img/right.png">
+                    </div>
+                    <!-- 초기화 -->
+                </div>
+            </div>
+                <div class="box4">
+                    <div class="box4_btn">
+                    <div class="box4_left">
+                        <img src="img/left.png">
+                    </div>
+                    <div class="box4_right">
+                        <img src="img/right.png">
+                    </div>
+                    <div class="inner">
+
+                        <ul class="notice">
+                            <li>
+                                <img src="img/con_41.png">
+                                <div class="box4_hover">
+                                    <p>청년다방<br>수제 맥주 런칭!</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/con_42.png">
+                                <div class="box4_hover">
+                                    <p>청년늬우스<br>
+                                        청년다방 소식지 21호</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/con_43.png">
+                                <div class="box4_hover">
+                                    <p>청년다방<br>
+                                        생생 인터뷰!</p>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="img/con_44.png">
+                                <div class="box4_hover">
+                                    <p>2020년<br>
+                                        수능 정보 알아보기! </p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="notice_line"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="box2">
+                <div class="box2_inner">
+                <div class="box2_l">
+                    <div class="box2_l_img">
+                        <div class="box2_l_hover">
+                            <p>제1회 청년다방 UCC 공모전<br>
+                                대상</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box2_r">
+                   
+                    <div class="list">
+                        <h4>NEWS</h4>
+                        <p>한경기획 '청년다방', 베트남 호치민에 직영 3호점 오픈 </p>
+                        <h4>2022. 01. 28</h4>
+                        <!-- 초기화 -->
+                    </div>
+                   
+                    <div class="list">
+                        <h4>NEWS</h4>
+                        <p>뉴스한경기획 '청년다방', 베트남 직영 1,2호점 오픈…K-푸드 선도</p>
+                        <h4>2022. 01. 14</h4>
+                        <!-- 초기화 -->
+                    </div>
+                  
+                    <div class="list">
+                        <h4>NEWS</h4>
+                        <p>뉴스청년다방 본사 ㈜한경기획, 은평천사원에 떡볶이 나눔 활동 진행
+                        </p>
+                        <h4> 2022. 01. 05</h4>
+                        <!-- 초기화 -->
+                    </div>
+                    
+                    <div class="list">
+                        <h4>NEWS</h4>
+                        <p>떡볶이 위에 '치즈·페퍼로니' 잔뜩 올린 청년다방 신상 '피자'</p>
+                        <h4> 2022. 01. 04</h4>
+                        <!-- 초기화 -->
+                    </div>
+                    <div class="box2_left">
+                        <img src="img/mini_left.png">
+                    </div>
+                    <div class="box2_right">
+                        <img src="img/mini_right.png">
+                    </div>
+                </div>
+                <!-- 초기화 -->
+            </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <p>개인정보취급방침 이메일 무단수집거부 청년연구소<br>
+                    ㈜한경기획 621-81-86842 서울특별시 마포구 대흥로60 스카이빌딩 3층 T. 1666-4693 F. 02)3144-7866 Copyright © 청년다방. All
+                    Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+
+</html>

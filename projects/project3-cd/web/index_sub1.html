@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style_sub1.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        mobile_menu();
+    });
+    
+    function mobile_menu(){
+        /* 변수 선언 */
+        var $menu = null;
+        var $left_gnb = null; // 영역 전체
+        var $depth1_wrap = null;
+        var $depth1 = null;
+        var $depth1_btn = null;
+        
+        /* 시작 함수 */
+        function start(){
+            init();
+            init_event();
+        }
+        /* 변수 초기화 함수 */
+        function init(){
+            $menu = $('.menu');
+            $left_gnb = $('.left_gnbWrap'); // 영역 전체
+            $depth1_wrap = $('.left_gnb>li');
+            $depth1 = $depth1_wrap.children('ul');
+            $depth1_btn = $depth1_wrap.children('a');
+        }
+        /* 이벤트 함수 */
+        function init_event(){
+            
+            /* 모바일 메뉴 버튼 클릭했을때 모바일 메뉴영역 나오게 하기 */
+            $menu.click(function(event){
+                event.preventDefault();
+                $left_gnb.addClass('on');
+            });
+            
+            /* x버튼 눌렀을때 모바일 메뉴 닫기 */
+            $('.close').click(function(event){
+                event.preventDefault();
+    
+                $left_gnb.removeClass('on');
+                
+                // x버튼 누르면 시간차 약간두고 소메뉴 닫히게 하기
+                setTimeout(function(){
+                    $depth1_btn.removeClass('on');
+                    $depth1.slideUp();
+                },300)
+            });
+            
+            /* depth1의 각메뉴 클릭시 depth2 나오게 하기 */
+            $depth1_btn.click(function(event){
+                event.preventDefault();
+                var $this = $(this);
+                var $this_ul = $this.siblings('ul');
+    
+                var check = $this.hasClass('on');
+                if(check){
+                    $this.removeClass('on');
+                    $this_ul.stop(true,true).slideUp();
+                }else{
+                    $depth1_btn.removeClass('on');
+                    $depth1.stop().slideUp();
+                    $this.addClass('on');
+                    $this_ul.stop(true,true).slideDown();
+                }
+            });
+            
+            /* 디바이스 크기 변경시 모바일 메뉴영역 숨기기 */
+            $(window).resize(function(){
+                $left_gnb.removeClass('on');
+            });
+        }
+        
+        start(); // 시작 호출
+    }
+    </script>
+    <style type="text/css">
+    /* Common **********************************************************************/ 
+    html,body {width:100%;  }
+    html {/*overflow-y:scroll;*/ overflow-x:hidden; box-sizing:border-box;}
+    *, *:before, *:after{box-sizing:inherit;}
+    *{
+    -webkit-text-size-adjust:none;
+    -webkit-text-size-adjust - auto | none | N% (default auto)
+    }
+    body {word-wrap:break-word; word-break:keep-all; }
+    body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea,button {margin:0; padding:0;}
+    fieldset,img {border:0px none;  vertical-align:top; -ms-interpolation-mode: bicubic;}
+    dl,ul,ol,menu,li {list-style:none;}
+    blockquote, q {quotes: none;}
+    blockquote:before, blockquote:after,q:before, q:after {content:''; content:none;}
+    button {border:0 none; background-color:transparent; cursor:pointer;}
+    body { background:#fff; font-family: Dotum,'돋움',Helvetica,"Apple SD Gothic Neo",sans-serif;}
+    body,th,td,input,select,textarea,button {font-size:13px; line-height:1.2;} 
+    
+    table {border-collapse:collapse; border-spacing:0;}
+    address,caption,cite,code,dfn,em,var {font-style:normal; font-weight:normal;}
+    summary, caption, legend{width:0; height:0; font-size: ; line-height: ; overflow: hidden; visibility: hidden; border: none; position:absolute; left:-1000em;}
+    caption {position:static;}
+    /* label hidden 처리 */
+    .invisible{overflow:hidden; visibility:hidden; width:0; height:0; font-size:0; line-height:0; position:absolute;}
+    label.invisible{*position:absolute;}
+    ::-moz-selection { color:#fff; background:#84bac4; }
+    ::selection { color:#fff; background:#84bac4; }
+    
+    .hide{display: none; opacity: 0; width: 0; height: 0; text-indent: -9999px;}
+    .clear:after{display: block; content: ""; clear: both;}
+    .fl{float: left;}
+    .fr{float: right;}
+    
+    
+    * html .clfix {height:1%;} /* Hides from IE-mac */
+    
+    
+    
+    /*-------------------모바일 메뉴----------------------*/
+    .gnbWrap{
+        padding-top: 10px; padding-bottom: 8px;
+        width: 890px; margin: 0 auto;
+    }
+    .gnbWrap>img{
+        width: 250px; height: 42px;
+    }
+    /* 모바일 메뉴 버튼 */
+    .menu {float: right}
+    .menu>a{width: 100%;height: 100%; display: block;}
+    
+    a.close{
+         width: 50px; height: 50px;
+        position: absolute; right: 0; top: 0; color: #fff;
+        line-height: 50px; text-align: center;
+    }
+    .left_gnbWrap{
+        height: 100%;
+        width: 300px;
+        position: fixed; right: -300px; top: 0;
+        background-color: rgba(1, 29, 43, 0.8);;
+        padding-top: 50px;
+        z-index: 999;
+        transition: all 0.3s;
+    }
+    .left_gnbWrap.on{
+        right:0;
+        font-family: 'notosans_light';
+    }
+    .left_gnb>li{
+        width: 100%;
+    }
+    .left_gnb>li>a{
+        display: block; text-align: center; line-height: 50px;
+        width: 100%; height: 50px;
+        color: #fff;
+        font-size: larger;
+    }
+    .left_gnb>li>a.on{
+        background-color: rgba(255, 255, 255, 0.7);
+        border-radius: 50px;
+        width: 60%; margin: 0 auto;
+        color: rgba(1, 29, 43, 1);
+        font-family: 'notosans'
+    }
+    .left_gnb>li>ul{
+        display: none;
+    }
+    .left_gnb>li>ul>li>a{
+        display: block; text-align: center; line-height: 50px;
+        width: 100%; height: 50px; 
+        color: #fff;
+        width: 80%;
+        margin: 0 auto;
+    
+    }
+    </style>
+    
+    
+    
+    
+    
+    <title>청년다방 브랜드</title>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">
+            <div class="inner">
+                <div class="logo"><a href="index.html"><img src="img/logo.png"></a></div>
+                <ul class="menu_c">
+                    <li><a href="index_sub1.html">브랜드</a></li>
+                    <li><a href="index_sub2.html">창업</a></li>
+                    <li><a href="index_sub3.html">새소식</a></li>
+                    <li><a href="index_sub4.html">고객센터</a></li>
+                    <!-- 초기화 -->
+                </ul>
+
+
+                <div class="menu">
+                    <a href="#"><img src="img/menu.png"></a>
+                  </div>
+                  
+                <nav class="left_gnbWrap">
+                    <a href="#" class="close">close</a>
+                    <ul class="left_gnb">
+                        <li>
+                            <a href="index_sub1.html">브랜드</a>
+                            <ul>
+                                <li><a href="index_sub1.html">청년다방</a></li>
+                                <li><a href="index_sub1.html">지표가 되다</a></li>
+                                <li><a href="index_sub1.html">한류 열풍에 동참하다</a></li>
+                                <li><a href="index_sub1.html">인테리어 갤러리</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub2.html">창업</a>
+                            <ul>
+                                <li><a href="index_sub2.html">청공 창업 스토리</a></li>
+                                <li><a href="index_sub2.html">성공 경쟁력</a></li>
+                                <li><a href="index_sub2.html">청년 상생을 만나다</a></li>
+                                <li><a href="index_sub2.html">창업은 어떻게</a></li>
+                                <li><a href="index_sub2.html">가맹 FAQ</a></li>
+                                <li><a href="index_sub2.html">창업 설명회 신청</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub3.html">새소식</a>
+                            <ul>
+                                <li><a href="index_sub3.html">청년 웹진</a></li>
+                                <li><a href="index_sub3.html">청년은 즐겁다</a></li>
+                                <li><a href="index_sub3.html">보도자료</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index_sub4.html">고객센터</a>
+                            <ul>
+                                <li><a href="index_sub4.html">문의하기</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+
+
+                <!-- 초기화 -->
+            </div>
+        </div>
+
+        <div id="mainimg">
+            <div class="mainimg kenburns-top"></div>
+            <div class="mainimg_box fade-in">
+                <div class="mainimg_text">
+                    <h1 class="text-focus-in">1등 청년의<br><span>힘찬 기백</span></h1>
+                    <p class="text-focus-in2">433호점 가족과 함께,<br>
+                        해외 3호점 세계인과 함께<br>
+                        올바르게 리딩하겠습니다.</p>
+                </div>
+                <div class="mainimg_line"></div>
+            </div>
+        </div>
+        
+        <div id="contents">
+            <div class="box1">
+                <div class="inner_16">
+                    <div class="box1_l">
+                        <div class="star">
+                            <div></div>
+                        </div>
+                        <h3>Brand Story</h3>
+                        <p>별난 토핑으로 시작한지 2년.<br>
+                            청년다방은 복합 외식공간의 의무를 착실히 해냈습니다.<br>
+                            그 노력의 결과, 모든 세대가 함께할 수 있는 공간이 된 청년다방은<br>
+                            타 브랜드와 비교할 수 없는 독보적인 1등이 되었습니다.</p>
+                        <p>현재는 K food의 한 축을 담당하여<br>
+                            세상의 중심에서 환하게 빛나고 있습니다. </p>
+                        <p>이에 앞으로의 10년도 기발한 요리로<br>
+                            여러분과 함께 할 수 있도록 언제나 한 발 앞서 움직이겠습니다.</p>
+                    </div>
+                    <div class="box1_r">
+                        <div></div>
+                    </div>
+                    <!-- 초기화 -->
+                </div>
+
+            </div>
+            <div class="box2">
+                <div class="inner">
+                    <div class="box2_t">
+                        <div class="box2_t_l">
+                            <div class="box2_t_l_line"></div>
+                            <div class="box2_t_l_img">
+                                <div></div>
+                            </div>
+                            <!-- 초기화 -->
+                        </div>
+                        <div class="box2_t_r">
+                            <div class="star">
+                                <div></div>
+                            </div>
+                            <h3>즉석떡볶이와 커피를 함께 즐기다</h3>
+                            <p>이색적인 컨셉을 선보인 청년다방은<br>
+                                변화하는 외식 환경과 트렌드 속에서 떡볶이 또한<br>
+                                든든한 한 끼가 될 수 있다는 고유의 정체성을 잃지 않고<br>
+                                지속적으로 성장해 왔습니다.
+                            </p>
+                            <p>
+                                차별화된 전략 브랜딩, 가맹점 수의 규모,<br>
+                                안정적인 운영 시스템을 바탕으로<br>
+                                국내 즉석 떡볶이 1등 브랜드로 거듭난 청년다방.
+                            </p>
+                            <p>1등 브랜드로서의 자각을 잃지 않고<br>
+                                바르게 시장을 리딩하겠습니다.</p>
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                    <div class="box2_b">
+                        <div class="box2_b_r">
+                            <div class="box2_b_r_img">
+                                <div></div>
+                            </div>
+                            <div class="box2_b_r_line"></div>
+                            <!-- 초기화 -->
+                        </div>
+                        <div class="box2_b_l">
+                            <div class="star">
+                                <div></div>
+                            </div>
+                            <h3>작지만 처음 가진 내 가게</h3>
+                            <p>일찍 나와 정성껏 재료를 준비하고 깨끗이 청소하고<br>
+                                또 유니폼을 챙겨입으면서 손님을 생각하는 그 마음.<br>
+                                가게 구석구석 손길 닿지 않은 곳 없고,<br>
+                                행여 튀어나온 못 하나가 손님의 옷을 상하게 할까 염려하는</p>
+                            <p>처음 가게를 가진, 처음 장사를 시작한,<br>
+                                처음 손님을 기다리는 청년의 그 마음을 떠올리며<br>
+                                저희는 청년다방이라는 브랜드를 만들었습니다.</p>
+                        </div>
+                       
+                        <!-- 초기화 -->
+                    </div>
+                </div>
+
+            </div>
+            <div class="box3">
+                <div class="inner_16">
+                    <h3>SERVICE</h3>
+                    <div class="service">
+                        <div class="list">
+                            <div class="list_line"></div>
+                            <div class="list_box">
+                                <div class="star_black">
+                                    <div></div>
+                                </div>
+                                <h6>진심이 담긴<br>인사를 드립니다</h6>
+                                <p>어떤 멘트를 사용할까도 중요하지만<br>
+                                    그 멘트안에 손님을 기다리고 기대하는<br>
+                                    마음을 담으려 노력하겠습니다.</p>
+                            </div>
+                           
+                        </div>
+                        <div class="list">
+                            <div class="list_line"></div>
+                            <div class="list_box">
+                                <div class="star_black">
+                                    <div></div>
+                                </div>
+                                <h6>항상 가족을<br>
+                                    맞이하는 마음으로</h6>
+                                <p>단순히 하나의 가맹점
+                                    개설이 아닌<br>가족을 맞이하는 마음으로<br>
+                                    창업을 도와드리겠습니다.</p>
+                            </div>
+                            
+                        </div>
+                        <div class="list">
+                            <div class="list_line"></div>
+                            <div class="list_box">
+                                <div class="star_black">
+                                    <div></div>
+                                </div>
+                                <h6>손님은<br>
+                                    언제나 옳습니다</h6>
+                                <p>어떤 요구사항이 있든
+                                    최선을 다해 <br>손님의 요구에
+                                    반응하는<br>청년다방이
+                                    되겠습니다.</p>
+                            </div>
+                            
+                        </div>
+                        <div class="list">
+                            <div class="list_line"></div>
+                            <div class="list_box">
+                                <div class="star_black">
+                                    <div></div>
+                                </div>
+                                <h6>머리는 숙이고,<br>
+                                    귀는 기울이고</h6>
+                                <p>고객님의 소리에 귀를 기울여<br>
+                                    추후 방문시 말뿐만이 아닌 행동으로<br>
+                                    달라진 청년다방을 보여드리겠습니다.</p>
+                            </div>
+                            
+                        </div>
+                        <!-- 초기화 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="inner">
+                <p>개인정보취급방침 이메일 무단수집거부 청년연구소<br>
+                    ㈜한경기획 621-81-86842 서울특별시 마포구 대흥로60 스카이빌딩 3층 T. 1666-4693 F. 02)3144-7866 Copyright © 청년다방. All
+                    Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
