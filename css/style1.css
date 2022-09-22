@@ -1,51 +1,4 @@
 
-@font-face {
-    font-family: "notosans";
-    src: url('font/NotoSansKR-Regular.otf') format('opentype');
-}
-
-@font-face {
-    font-family: "notosans_light";
-    src: url('font/NotoSansKR-Thin.otf') format('opentype');
-
-}
-@font-face {
-    font-family: "notosans_medium";
-    src: url('font/NotoSansKR-Medium.otf') format('opentype');
-}
-
-
-@font-face {
-    font-family: "notosans_bold";
-    src: url('font/NotoSansKR-Bold.otf') format('opentype');
-}
-
-@font-face {
-    font-family: "notosans_black";
-    src: url('font/NotoSansKR-Black.otf') format('opentype');
-}
-
-@font-face {
-    font-family: "gmarket_bold";
-    src: url('font/GmarketSansBold.otf') format('opentype');
-}
-
-@font-face {
-    font-family: "gmarket_light";
-    src: url('font/GmarketSansLight.otf') format('opentype');
-}
-
-@font-face {
-    font-family: "gmarket";
-    src: url('font/GmarketSansMedium.otf') format('opentype');
-}
-
-
-@font-face {
-    font-family: "euro";
-    src: url('font/eurof55.ttf') format('opentype');
-}
-
 
 @font-face {
 	font-family: 'Pretendard';
@@ -235,7 +188,19 @@ html{scroll-behavior: smooth;}
     background: #000;
 }
 
+.page_up{position: absolute; width: 50px; height: 300px; top: 0%; right: 0; outline: 2px solid #000; position: fixed; transition: all 0.2s; }
+  .page_up>p{text-align: center; writing-mode: vertical-rl;
+    text-orientation: upright; margin: 0 auto;    margin-top: 110px; font-family: 'pretendard'; text-transform: uppercase; color: #000;letter-spacing: -2px;}
+.page_down{position: absolute; width: 50px; height: 300px; bottom: 0%; right: 0;  outline: 2px solid #000;position: fixed;transition: all 0.2s; }
+  .page_down>p{text-align: center; writing-mode: vertical-rl;
+    text-orientation: upright; margin: 0 auto;    margin-top: 85px; font-family: 'pretendard'; text-transform: uppercase; letter-spacing: -2px; color: #000;letter-spacing: -2px;}
+
+.page_down:hover{background-color: #FE4343;transition: all 0.2s;}
+.page_up:hover{background-color: #FE4343; transition: all 0.2s;}
+
+
 a{text-decoration: none; font-size: unset; color: unset;}
+
 
 .bottommenu {
   
@@ -278,7 +243,9 @@ a{text-decoration: none; font-size: unset; color: unset;}
     height: 50px;
     cursor: pointer;
     transition: all 0.2s;
-    letter-spacing: -1px;
+    font-family: 'pretendard';
+    font-weight: 300;
+
     transition: all 0.2s;
   }
   
@@ -617,6 +584,7 @@ html, body {
 }body {
   font:14px/1.5 sans-serif;
   padding: 2rem;
+  position: relative;
   
 
 }

@@ -190,7 +190,8 @@ a{text-decoration: none; font-size: unset; color: unset;}
     text-align: center;
   
     text-transform: uppercase;
-
+    font-family: 'pretendard';
+    font-weight: 400;
     z-index: 9999;
     line-height: 50px;
     overflow: hidden;
@@ -249,8 +250,10 @@ a{text-decoration: none; font-size: unset; color: unset;}
     height: 50px;
     cursor: pointer;
     transition: all 0.2s;
-    letter-spacing: -1px;
+letter-spacing: 0;
     transition: all 0.2s;
+	font-family: 'pretendard';
+	font-weight: 300;
   }
   
   .bottommenu:after {
