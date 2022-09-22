@@ -20,7 +20,7 @@
 	font-display: swap;
 	src: local('Pretendard Bold'), url('./woff2/Pretendard-Bold.woff2') format('woff2'), url('./woff/Pretendard-Bold.woff') format('woff');
 }
-
+.bottommenu
 @font-face {
 	font-family: 'Pretendard';
 	font-weight: 600;
@@ -203,8 +203,7 @@ a{text-decoration: none; font-size: unset; color: unset;}
 
 
 .bottommenu {
-  
-    width: 94.8%;
+
     margin: 0 auto;
     position: fixed;
     bottom: 0;
@@ -230,7 +229,7 @@ a{text-decoration: none; font-size: unset; color: unset;}
   
   @media (max-width:768px){   .logo-shine>img{width: 100%;} .logo-shine{width: 53px; height: 19px;}}
   @media (max-width:1800px){
-    .bottommenu{width: 92%;}
+
     .square{width: 4%;}
   }
 
@@ -694,7 +693,7 @@ font-size: 1.5rem;
 @media (max-width:1200px){
   .square{width: 50px;}
   .square5{width: 100%;}
-  .bottommenu{width: 88%;}
+
 }
 
 @media (max-width:900px) {
