@@ -89,7 +89,7 @@ body {
 	position: fixed;
   
 	z-index: 9999;text-align: center;
-top: 35%;
+top: 42%;
 	font-family: 'euro';
 	font-weight: normal;
 right: 15px;	
@@ -420,7 +420,7 @@ a{text-decoration: none; font-size: unset; color: unset;}
 
 
 /* 박스6 */
-.box6{padding: 180px 0 300px}
+.box6{padding: 170px 0 300px}
 .box6:after{display: block; content: ""; clear: both;}
 .box6>.info{width: 250px; float: left; outline: solid 2px #000; margin:200px 0 0 0; text-align: center;font-family: 'gmarket'; margin-left: 80px;}
 .box6>.info>.receipt{height: 32px; border-top: solid 2px #000; font-size: 1.5rem;letter-spacing: -0.5px; line-height: 32px;text-align: left; padding-left: 10px;}
@@ -501,7 +501,7 @@ a{text-decoration: none; font-size: unset; color: unset;}
 .box9 .color2{width: 34px; height: 100%;  float: right; background-color: #fff; outline: #000 2px solid;}
 
 /* 박스10*/
-.box10{padding: 150px 0 300px}
+.box10{padding: 150px 0 400px}
 .box10:after{display: block; content: ""; clear: both;}
 .box10>.info{width: 250px; float: left; outline: solid 2px #000; margin:130px 0 0 0; text-align: center;font-family: 'gmarket'; margin-left: 80px;}
 .box10>.info>.receipt{height: 32px; border-top: solid 2px #000; font-size: 1.5rem;letter-spacing: -0.5px; line-height: 32px;text-align: left; padding-left: 10px;}
