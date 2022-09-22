@@ -167,9 +167,9 @@ html{scroll-behavior: smooth;}
 .square2{    top: -1.3px;
     right: -0.9px;position:fixed !important;
 }.square3{bottom: -1.05px;
-	left: -1.1px;position:fixed !important;}
+	left: -1.1px;position:fixed !important;width: 51px; z-index: 55555;}
   .square4{bottom: -1.3px;
-	 right: -2px;position:fixed !important;
+	 right: -2px;position:fixed !important; width: 52px; z-index: 55555;
   }
 .square3{margin-top: -14px}
 .square5{width: 100%; top: 0; height: 50px; background-color: #fff; position: fixed !important; z-index: 9999;}
