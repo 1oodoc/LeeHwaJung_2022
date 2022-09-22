@@ -134,6 +134,11 @@ body {
 
 
   }
+
+
+  .bottommenu>a:nth-child(1)>div{border-left: #000 2px solid !important;}
+
+
   .wrap01 {
 	position: fixed;
   
@@ -154,7 +159,7 @@ right: 15px;
 
 
   }
-  
+
 
 
 /* 하단메뉴 */
@@ -229,7 +234,7 @@ a{text-decoration: none; font-size: unset; color: unset;}
 		.col-md-413{width: 90% !important; padding: 5%;}
 		.col-cocone{border-right: unset !important; width: 100% !important;}
 		.bottommenu>a:nth-child(5)>div{border-right: #000 0px solid;}
-		
+
 	
   }
   @media (max-width:1800px){
