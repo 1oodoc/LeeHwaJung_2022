@@ -132,7 +132,7 @@ body {
 	margin: 0 auto 20px;
 	text-align: center;
 
-	transition: all 0.1s;
+
   }
   .wrap01 {
 	position: fixed;
@@ -350,10 +350,7 @@ a, a:hover, a:focus, a:active, a.active {
     padding-left: 0;
 }
 
-::selection {
-	text-shadow: none;
-	background: #FF4848
-}
+
 
 @media (min-width: 768px) {
 	section {
@@ -393,9 +390,10 @@ ul li {
 }.square3{bottom: -1.05px;
 	left: -1.1px;}
   .square4{bottom: -1.3px;
-	 right: -2px;
+	 right: -2px; z-index: 22222;
   }
 .square3{margin-top: -14px}
+.bottommenu>a:nth-child(5)>div{outline: 2px solid #000; border-left: 0px solid #000; }
 
 .concept-t{width: 100%; }
 .concept-t:after{display: block; content: ""; clear: both;}
