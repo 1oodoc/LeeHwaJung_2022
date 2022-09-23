@@ -219,14 +219,14 @@ a{text-decoration: none; font-size: unset; color: unset;}
   @media (max-width:1200px){
 	.col-md-411 .ot-portfolio-item{border-right: unset !important; padding: 2% !important;}
 	.lg_ex_text{width: 100% !important; margin-top: 20px;}
-	.lg_ex{    padding: 20%;
+	.lg_ex{    padding: 10%;
 		border-top: 2px solid #000;
 		border-bottom: 2px solid #000;}
 		.concept-b-1{position: unset !important;}
 
 		.col-md-412 .ot-portfolio-item{border-right: unset !important; padding: 2% !important;}
 	.cd_ex_text{width: 100% !important; margin-top: 20px;}
-	.cd_ex{    padding: 20%;
+	.cd_ex{    padding: 10%;
 		border-top: 2px solid #000;
 		border-bottom: 2px solid #000;}
 		.col-md-42 .ot-portfolio-item{padding: 2% 30% !important;}
@@ -234,6 +234,8 @@ a{text-decoration: none; font-size: unset; color: unset;}
 		.col-md-413{width: 90% !important; padding: 5%;}
 		.col-cocone{border-right: unset !important; width: 100% !important;}
 		.bottommenu>a:nth-child(5)>div{border-right: #000 0px solid;}
+		.concept-b-1-list{width: 100% !important; text-align: center; }
+		.section-title h2{font-size: 3rem !important;}
 
 	
   }
@@ -397,7 +399,9 @@ ul li {
 .square1{top: -1.05px;
    left: -1.1px;}
 .square2{    top: -1.3px;
-    right: -2px;}.square3{bottom: -3.05px;
+    right: -2px;}
+	
+	.square3{bottom: -3.05px;
 	left: -2.1px;position:fixed !important;width: 51px; z-index: 55555;}
   .square4{bottom: -1.3px;
 	 right: -2px;position:fixed !important; width: 52px; z-index: 55555;
