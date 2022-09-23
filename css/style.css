@@ -316,6 +316,17 @@ html.w-mod-touch * {
   display: inline-block
 }
 
+.square{width: 50px; height: 50px; position: absolute;background-color: #000; outline: 2px solid #000; }
+.square1{
+   left: -0.9px;position:fixed !important;}
+.square2{    top: -1.3px;
+    right: -0.9px;position:fixed !important;
+}.square3{bottom: -3.05px;
+	left: -2.1px;position:fixed !important;width: 51px; z-index: 55555;}
+  .square4{bottom: -1.3px;
+	 right: -2px;position:fixed !important; width: 52px; z-index: 55555;
+  }
+.square3{margin-top: -14px}
 .w-clearfix:before,
 .w-clearfix:after {
   content: " ";
@@ -933,6 +944,8 @@ textarea.w-select {
 }
 
 @media screen and (max-width:991px) {
+
+  .square{display: none;}
   .w-container {
     max-width: 728px
   }
