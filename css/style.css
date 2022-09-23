@@ -5296,35 +5296,35 @@ img {
   .home_topleft {
     position: static;
     width: 100% !important;
-    height: 18%;
+    height: 18% !important;
     border-width: 1px;
   }
 
   .home_topright {
     position: static;
     width: 100%  !important;
-    height: 18%;
+    height: 18% !important;
     border-width: 1px;
   }
 
   .home_bottomleft {
     position: static;
     width: 100%  !important;
-    height: 18%;
+    height: 18% !important;
     border-width: 1px;
   }
 
   .home_bottomright {
     position: static;
     width: 100%  !important;
-    height: 18%;
+    height: 18% !important;
     border-width: 1px;
   }
 
   .logo {
     position: static;
     width: 100%  !important;
-    height: 28%;
+    height: 28% !important;
     margin-top: 0px;
     -webkit-box-pack: center;
     -webkit-justify-content: center;
@@ -6138,23 +6138,23 @@ img {
   }
 
   .home_topleft {
-    height: 19%;
+    height: 19% !important;
   }
 
   .home_topright {
-    height: 19%;
+    height: 19%  !important;
   }
 
   .home_bottomleft {
-    height: 19%;
+    height: 19%  !important;
   }
 
   .home_bottomright {
-    height: 19%;
+    height: 19%  !important;
   }
 
   .logo {
-    height: 25%;
+    height: 25%  !important;
   }
 
 

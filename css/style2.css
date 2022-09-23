@@ -238,13 +238,16 @@ a{text-decoration: none; font-size: unset; color: unset;}
 	
   }
   @media (max-width:1800px){
-    .bottommenu{width: 92%;}
+
+		.bottommenu{width: calc(100% - 100px);}
     .square{width: 4%;}
 	.concept-b-1{top: unset !important; bottom: 50px;}
 	.lg_ex_text{width: 80%; top: 10%;text-align: center;}
 	.cd_ex_text{width: 80%; top: 10%; text-align: center;}
 	
   }
+
+
 
   .bottommenu>a>div {
     float: left;
@@ -394,11 +397,10 @@ ul li {
 .square1{top: -1.05px;
    left: -1.1px;}
 .square2{    top: -1.3px;
-    right: -2px;
-}.square3{bottom: -1.05px;
-	left: -1.1px;}
+    right: -2px;}.square3{bottom: -3.05px;
+	left: -2.1px;position:fixed !important;width: 51px; z-index: 55555;}
   .square4{bottom: -1.3px;
-	 right: -2px; z-index: 22222;
+	 right: -2px;position:fixed !important; width: 52px; z-index: 55555;
   }
 .square3{margin-top: -14px}
 .bottommenu>a:nth-child(5)>div{outline: 2px solid #000; border-left: 0px solid #000; }

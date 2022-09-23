@@ -133,6 +133,8 @@ a{text-decoration: none; font-size: unset; color: unset;}
     transition: all 0.2s;
     letter-spacing: -1px;
     transition: all 0.2s;
+	font-family: 'pretendard';
+	font-size: 18px;
   }
   
   .bottommenu:after {
