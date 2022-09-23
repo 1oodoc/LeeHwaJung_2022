@@ -188,6 +188,7 @@ a{text-decoration: none; font-size: unset; color: unset;}
   @media (max-width:768px){   .logo-shine>img{width: 100%;} .logo-shine{width: 53px; height: 19px;}  
   .square{width: 50px !important;}    
   .bottommenu{z-index: 555555;}
+  .cbp-l-filters-alignRight .cbp-filter-item{padding: 5px 0;}
 }
   @media (max-width:1800px){
     .bottommenu{width:calc(100% - 50px)}
